@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+                  xmlns:tns="http://webservice.smsrelay.armaghan.net/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  name="MessageRelayService" targetNamespace="http://webservice.smsrelay.armaghan.net/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservice.smsrelay.armaghan.net/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://webservice.smsrelay.armaghan.net/">
+  <xs:element name="countResult" type="tns:countResult"/>
+  <xs:element name="getMessageState" type="tns:getMessageState"/>
+  <xs:element name="getMessageStateResponse" type="tns:getMessageStateResponse"/>
+  <xs:element name="getReceivedMessageCount" type="tns:getReceivedMessageCount"/>
+  <xs:element name="getReceivedMessageCountResponse" type="tns:getReceivedMessageCountResponse"/>
+  <xs:element name="getUserInfo" type="tns:getUserInfo"/>
+  <xs:element name="getUserInfoResponse" type="tns:getUserInfoResponse"/>
+  <xs:element name="messageResult" type="tns:messageResult"/>
+  <xs:element name="messageStateResult" type="tns:messageStateResult"/>
+  <xs:element name="pullReceivedMessages" type="tns:pullReceivedMessages"/>
+  <xs:element name="pullReceivedMessagesResponse" type="tns:pullReceivedMessagesResponse"/>
+  <xs:element name="referenceResult" type="tns:referenceResult"/>
+  <xs:element name="sendMessageManyToMany" type="tns:sendMessageManyToMany"/>
+  <xs:element name="sendMessageManyToManyResponse" type="tns:sendMessageManyToManyResponse"/>
+  <xs:element name="sendMessageOneToMany" type="tns:sendMessageOneToMany"/>
+  <xs:element name="sendMessageOneToManyResponse" type="tns:sendMessageOneToManyResponse"/>
+  <xs:element name="userResult" type="tns:userResult"/>
+  <xs:element name="userSuppliedIdResult" type="tns:userSuppliedIdResult"/>
+  <xs:complexType name="getUserInfo">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserInfoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:userResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="userResult">
+    <xs:sequence>
+      <xs:element name="user" nillable="true" type="tns:user"/>
+      <xs:element name="error" type="tns:error"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="user">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="credit" type="xs:double"/>
+      <xs:element name="deliveryUrl" nillable="true" type="xs:string"/>
+      <xs:element name="receiveUrl" nillable="true" type="xs:string"/>
+      <xs:element name="expirationDate" type="xs:dateTime"/>
+      <xs:element maxOccurs="unbounded" name="IPs" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="numbers" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="error">
+    <xs:sequence>
+      <xs:element name="errorCode" type="xs:int"/>
+      <xs:element name="timestamp" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageOneToMany">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="originator" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="destination" type="xs:string"/>
+      <xs:element name="content" type="xs:string"/>
+      <xs:element minOccurs="0" name="userSuppliedId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageOneToManyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:referenceResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="referenceResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="references" nillable="true" type="xs:long"/>
+      <xs:element name="error" type="tns:error"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="pullReceivedMessages">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="pullReceivedMessagesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:messageResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="messageResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="messages" nillable="true" type="tns:message"/>
+      <xs:element name="error" type="tns:error"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="message">
+    <xs:sequence>
+      <xs:element name="originator" type="xs:string"/>
+      <xs:element name="destination" type="xs:string"/>
+      <xs:element name="content" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getReceivedMessageCount">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getReceivedMessageCountResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:countResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="countResult">
+    <xs:sequence>
+      <xs:element name="count" type="xs:int"/>
+      <xs:element name="error" type="tns:error"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageBinaryUDHOneToMany">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="originator" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="destination" type="xs:string"/>
+      <xs:element name="content" type="xs:string"/>
+      <xs:element minOccurs="0" name="udh" type="xs:string"/>
+      <xs:element minOccurs="0" name="mClass" type="xs:string"/>
+      <xs:element minOccurs="0" name="userSuppliedId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageBinaryUDHOneToManyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:referenceResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageBinaryUDHManyToMany">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="originator" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="destination" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="content" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="udh" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="mClass" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="userSuppliedId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageBinaryUDHManyToManyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:referenceResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageUDHOneToMany">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="originator" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="destination" type="xs:string"/>
+      <xs:element name="content" type="xs:string"/>
+      <xs:element minOccurs="0" name="udh" type="xs:string"/>
+      <xs:element minOccurs="0" name="mClass" type="xs:string"/>
+      <xs:element minOccurs="0" name="userSuppliedId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageUDHOneToManyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:referenceResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageBinaryPortManyToMany">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="originator" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="destination" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="content" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="destinationPort" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="sourcePort" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="mClass" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="userSuppliedId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageBinaryPortManyToManyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:referenceResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageManyToMany">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="originator" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="destination" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="content" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="userSuppliedId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageManyToManyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:referenceResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessagePortManyToMany">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="originator" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="destination" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="content" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="destinationPort" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="sourcePort" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="mClass" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="userSuppliedId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessagePortManyToManyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:referenceResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessagePortOneToMany">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="originator" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="destination" type="xs:string"/>
+      <xs:element name="content" type="xs:string"/>
+      <xs:element minOccurs="0" name="destinationPort" type="xs:string"/>
+      <xs:element minOccurs="0" name="sourcePort" type="xs:string"/>
+      <xs:element minOccurs="0" name="mClass" type="xs:string"/>
+      <xs:element minOccurs="0" name="userSuppliedId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessagePortOneToManyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:referenceResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageUDHManyToMany">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="originator" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="destination" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="content" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="udh" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="mClass" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="userSuppliedId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageUDHManyToManyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:referenceResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMessageState">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="id" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMessageStateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:messageStateResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="messageStateResult">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="states" nillable="true" type="tns:messageState"/>
+      <xs:element name="error" type="tns:error"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="messageState">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element name="state" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageBinaryPortOneToMany">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="originator" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="destination" type="xs:string"/>
+      <xs:element name="content" type="xs:string"/>
+      <xs:element minOccurs="0" name="destinationPort" type="xs:string"/>
+      <xs:element minOccurs="0" name="sourcePort" type="xs:string"/>
+      <xs:element minOccurs="0" name="mClass" type="xs:string"/>
+      <xs:element minOccurs="0" name="userSuppliedId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendMessageBinaryPortOneToManyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:referenceResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="userSuppliedIdResult">
+    <xs:sequence>
+      <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+      <xs:element name="error" type="tns:error"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sendMessageBinaryUDHOneToMany" nillable="true" type="tns:sendMessageBinaryUDHOneToMany"/>
+  <xs:element name="sendMessageBinaryUDHOneToManyResponse" nillable="true" type="tns:sendMessageBinaryUDHOneToManyResponse"/>
+  <xs:element name="sendMessageBinaryUDHManyToMany" nillable="true" type="tns:sendMessageBinaryUDHManyToMany"/>
+  <xs:element name="sendMessageBinaryUDHManyToManyResponse" nillable="true" type="tns:sendMessageBinaryUDHManyToManyResponse"/>
+  <xs:element name="sendMessageUDHOneToMany" nillable="true" type="tns:sendMessageUDHOneToMany"/>
+  <xs:element name="sendMessageUDHOneToManyResponse" nillable="true" type="tns:sendMessageUDHOneToManyResponse"/>
+  <xs:element name="sendMessageBinaryPortManyToMany" nillable="true" type="tns:sendMessageBinaryPortManyToMany"/>
+  <xs:element name="sendMessageBinaryPortManyToManyResponse" nillable="true" type="tns:sendMessageBinaryPortManyToManyResponse"/>
+  <xs:element name="sendMessagePortManyToMany" nillable="true" type="tns:sendMessagePortManyToMany"/>
+  <xs:element name="sendMessagePortManyToManyResponse" nillable="true" type="tns:sendMessagePortManyToManyResponse"/>
+  <xs:element name="sendMessagePortOneToMany" nillable="true" type="tns:sendMessagePortOneToMany"/>
+  <xs:element name="sendMessagePortOneToManyResponse" nillable="true" type="tns:sendMessagePortOneToManyResponse"/>
+  <xs:element name="sendMessageUDHManyToMany" nillable="true" type="tns:sendMessageUDHManyToMany"/>
+  <xs:element name="sendMessageUDHManyToManyResponse" nillable="true" type="tns:sendMessageUDHManyToManyResponse"/>
+  <xs:element name="sendMessageBinaryPortOneToMany" nillable="true" type="tns:sendMessageBinaryPortOneToMany"/>
+  <xs:element name="sendMessageBinaryPortOneToManyResponse" nillable="true" type="tns:sendMessageBinaryPortOneToManyResponse"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="pullReceivedMessagesResponse">
+    <wsdl:part element="tns:pullReceivedMessagesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageOneToMany">
+    <wsdl:part element="tns:sendMessageOneToMany" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pullReceivedMessages">
+    <wsdl:part element="tns:pullReceivedMessages" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageUDHOneToManyResponse">
+    <wsdl:part element="tns:sendMessageUDHOneToManyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageUDHOneToMany">
+    <wsdl:part element="tns:sendMessageUDHOneToMany" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageManyToMany">
+    <wsdl:part element="tns:sendMessageManyToMany" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageBinaryUDHManyToManyResponse">
+    <wsdl:part element="tns:sendMessageBinaryUDHManyToManyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageBinaryUDHOneToManyResponse">
+    <wsdl:part element="tns:sendMessageBinaryUDHOneToManyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessagePortOneToMany">
+    <wsdl:part element="tns:sendMessagePortOneToMany" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageUDHManyToMany">
+    <wsdl:part element="tns:sendMessageUDHManyToMany" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageUDHManyToManyResponse">
+    <wsdl:part element="tns:sendMessageUDHManyToManyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageBinaryPortOneToManyResponse">
+    <wsdl:part element="tns:sendMessageBinaryPortOneToManyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageManyToManyResponse">
+    <wsdl:part element="tns:sendMessageManyToManyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserInfo">
+    <wsdl:part element="tns:getUserInfo" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReceivedMessageCount">
+    <wsdl:part element="tns:getReceivedMessageCount" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageBinaryUDHOneToMany">
+    <wsdl:part element="tns:sendMessageBinaryUDHOneToMany" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageBinaryUDHManyToMany">
+    <wsdl:part element="tns:sendMessageBinaryUDHManyToMany" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageBinaryPortManyToMany">
+    <wsdl:part element="tns:sendMessageBinaryPortManyToMany" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageOneToManyResponse">
+    <wsdl:part element="tns:sendMessageOneToManyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessagePortManyToMany">
+    <wsdl:part element="tns:sendMessagePortManyToMany" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReceivedMessageCountResponse">
+    <wsdl:part element="tns:getReceivedMessageCountResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageBinaryPortManyToManyResponse">
+    <wsdl:part element="tns:sendMessageBinaryPortManyToManyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessagePortOneToManyResponse">
+    <wsdl:part element="tns:sendMessagePortOneToManyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserInfoResponse">
+    <wsdl:part element="tns:getUserInfoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMessageStateResponse">
+    <wsdl:part element="tns:getMessageStateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessagePortManyToManyResponse">
+    <wsdl:part element="tns:sendMessagePortManyToManyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMessageState">
+    <wsdl:part element="tns:getMessageState" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageBinaryPortOneToMany">
+    <wsdl:part element="tns:sendMessageBinaryPortOneToMany" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MessageRelay">
+    <wsdl:operation name="getUserInfo">
+      <wsdl:input message="tns:getUserInfo" name="getUserInfo" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getUserInfoRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getUserInfoRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserInfoResponse" name="getUserInfoResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getUserInfoResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getUserInfoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageOneToMany">
+      <wsdl:input message="tns:sendMessageOneToMany" name="sendMessageOneToMany" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageOneToManyRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageOneToManyRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendMessageOneToManyResponse" name="sendMessageOneToManyResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageOneToManyResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageOneToManyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pullReceivedMessages">
+      <wsdl:input message="tns:pullReceivedMessages" name="pullReceivedMessages" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/pullReceivedMessagesRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/pullReceivedMessagesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:pullReceivedMessagesResponse" name="pullReceivedMessagesResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/pullReceivedMessagesResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/pullReceivedMessagesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReceivedMessageCount">
+      <wsdl:input message="tns:getReceivedMessageCount" name="getReceivedMessageCount" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getReceivedMessageCountRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getReceivedMessageCountRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getReceivedMessageCountResponse" name="getReceivedMessageCountResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getReceivedMessageCountResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getReceivedMessageCountResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageBinaryUDHOneToMany">
+      <wsdl:input message="tns:sendMessageBinaryUDHOneToMany" name="sendMessageBinaryUDHOneToMany" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryUDHOneToManyRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryUDHOneToManyRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendMessageBinaryUDHOneToManyResponse" name="sendMessageBinaryUDHOneToManyResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryUDHOneToManyResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryUDHOneToManyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageBinaryUDHManyToMany">
+      <wsdl:input message="tns:sendMessageBinaryUDHManyToMany" name="sendMessageBinaryUDHManyToMany" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryUDHManyToManyRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryUDHManyToManyRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendMessageBinaryUDHManyToManyResponse" name="sendMessageBinaryUDHManyToManyResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryUDHManyToManyResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryUDHManyToManyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageUDHOneToMany">
+      <wsdl:input message="tns:sendMessageUDHOneToMany" name="sendMessageUDHOneToMany" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageUDHOneToManyRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageUDHOneToManyRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendMessageUDHOneToManyResponse" name="sendMessageUDHOneToManyResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageUDHOneToManyResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageUDHOneToManyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageBinaryPortManyToMany">
+      <wsdl:input message="tns:sendMessageBinaryPortManyToMany" name="sendMessageBinaryPortManyToMany" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryPortManyToManyRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryPortManyToManyRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendMessageBinaryPortManyToManyResponse" name="sendMessageBinaryPortManyToManyResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryPortManyToManyResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryPortManyToManyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageManyToMany">
+      <wsdl:input message="tns:sendMessageManyToMany" name="sendMessageManyToMany" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageManyToManyRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageManyToManyRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendMessageManyToManyResponse" name="sendMessageManyToManyResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageManyToManyResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageManyToManyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessagePortManyToMany">
+      <wsdl:input message="tns:sendMessagePortManyToMany" name="sendMessagePortManyToMany" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessagePortManyToManyRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessagePortManyToManyRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendMessagePortManyToManyResponse" name="sendMessagePortManyToManyResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessagePortManyToManyResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessagePortManyToManyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessagePortOneToMany">
+      <wsdl:input message="tns:sendMessagePortOneToMany" name="sendMessagePortOneToMany" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessagePortOneToManyRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessagePortOneToManyRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendMessagePortOneToManyResponse" name="sendMessagePortOneToManyResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessagePortOneToManyResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessagePortOneToManyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageUDHManyToMany">
+      <wsdl:input message="tns:sendMessageUDHManyToMany" name="sendMessageUDHManyToMany" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageUDHManyToManyRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageUDHManyToManyRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendMessageUDHManyToManyResponse" name="sendMessageUDHManyToManyResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageUDHManyToManyResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageUDHManyToManyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMessageState">
+      <wsdl:input message="tns:getMessageState" name="getMessageState" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getMessageStateRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getMessageStateRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getMessageStateResponse" name="getMessageStateResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getMessageStateResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/getMessageStateResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageBinaryPortOneToMany">
+      <wsdl:input message="tns:sendMessageBinaryPortOneToMany" name="sendMessageBinaryPortOneToMany" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryPortOneToManyRequest" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryPortOneToManyRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:sendMessageBinaryPortOneToManyResponse" name="sendMessageBinaryPortOneToManyResponse" wsam:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryPortOneToManyResponse" wsaw:Action="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryPortOneToManyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MessageRelayServiceSoapBinding" type="tns:MessageRelay">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getUserInfo">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/getUserInfoRequest" style="document"/>
+      <wsdl:input name="getUserInfo">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserInfoResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageOneToMany">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageOneToManyRequest" style="document"/>
+      <wsdl:input name="sendMessageOneToMany">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendMessageOneToManyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pullReceivedMessages">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/pullReceivedMessagesRequest" style="document"/>
+      <wsdl:input name="pullReceivedMessages">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pullReceivedMessagesResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReceivedMessageCount">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/getReceivedMessageCountRequest" style="document"/>
+      <wsdl:input name="getReceivedMessageCount">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getReceivedMessageCountResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageBinaryUDHOneToMany">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryUDHOneToManyRequest" style="document"/>
+      <wsdl:input name="sendMessageBinaryUDHOneToMany">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendMessageBinaryUDHOneToManyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageUDHOneToMany">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageUDHOneToManyRequest" style="document"/>
+      <wsdl:input name="sendMessageUDHOneToMany">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendMessageUDHOneToManyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageBinaryUDHManyToMany">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryUDHManyToManyRequest" style="document"/>
+      <wsdl:input name="sendMessageBinaryUDHManyToMany">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendMessageBinaryUDHManyToManyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageBinaryPortManyToMany">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryPortManyToManyRequest" style="document"/>
+      <wsdl:input name="sendMessageBinaryPortManyToMany">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendMessageBinaryPortManyToManyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageManyToMany">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageManyToManyRequest" style="document"/>
+      <wsdl:input name="sendMessageManyToMany">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendMessageManyToManyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessagePortManyToMany">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessagePortManyToManyRequest" style="document"/>
+      <wsdl:input name="sendMessagePortManyToMany">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendMessagePortManyToManyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessagePortOneToMany">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessagePortOneToManyRequest" style="document"/>
+      <wsdl:input name="sendMessagePortOneToMany">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendMessagePortOneToManyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageUDHManyToMany">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageUDHManyToManyRequest" style="document"/>
+      <wsdl:input name="sendMessageUDHManyToMany">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendMessageUDHManyToManyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMessageState">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/getMessageStateRequest" style="document"/>
+      <wsdl:input name="getMessageState">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMessageStateResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessageBinaryPortOneToMany">
+      <soap12:operation soapAction="http://webservice.smsrelay.armaghan.net/MessageRelay/sendMessageBinaryPortOneToManyRequest" style="document"/>
+      <wsdl:input name="sendMessageBinaryPortOneToMany">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendMessageBinaryPortOneToManyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MessageRelayService">
+    <wsdl:port binding="tns:MessageRelayServiceSoapBinding" name="MessageRelayPort">
+      <soap12:address location="http://vesal.armaghan.net:8080/core/MessageRelayService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

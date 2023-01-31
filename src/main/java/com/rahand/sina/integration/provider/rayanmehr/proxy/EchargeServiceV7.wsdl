@@ -1,0 +1,1093 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE wsdl:definitions [
+        <!ELEMENT wsdl:definitions (wsp:Policy|wsdl:types|wsdl:message|wsdl:portType|wsdl:binding|wsdl:service)*>
+        <!ATTLIST wsdl:definitions
+                name CDATA #REQUIRED
+                targetNamespace CDATA #REQUIRED
+                xmlns:wsdl CDATA #REQUIRED
+                xmlns:wsam CDATA #REQUIRED
+                xmlns:wsx CDATA #REQUIRED
+                xmlns:wsap CDATA #REQUIRED
+                xmlns:msc CDATA #REQUIRED
+                xmlns:wsp CDATA #REQUIRED
+                xmlns:xsd CDATA #REQUIRED
+                xmlns:soap CDATA #REQUIRED
+                xmlns:wsu CDATA #REQUIRED
+                xmlns:soap12 CDATA #REQUIRED
+                xmlns:soapenc CDATA #REQUIRED
+                xmlns:tns CDATA #REQUIRED
+                xmlns:wsa10 CDATA #REQUIRED
+                xmlns:wsaw CDATA #REQUIRED
+                xmlns:wsa CDATA #REQUIRED>
+        <!ELEMENT wsp:Policy (wsp:ExactlyOne|sp:TransportToken|sp:HttpsToken|sp:AlgorithmSuite|sp:Basic256|sp:Layout|sp:Lax|sp:IncludeTimestamp|sp:UsernameToken|sp:WssUsernameToken10|sp:Strict)*>
+        <!ATTLIST wsp:Policy
+                wsu:Id CDATA #IMPLIED>
+        <!ELEMENT wsp:ExactlyOne (wsp:All)*>
+        <!ELEMENT wsp:All (sp:TransportBinding|sp:SignedSupportingTokens|sp:Wss10)*>
+        <!ELEMENT sp:TransportBinding (wsp:Policy)*>
+        <!ATTLIST sp:TransportBinding
+                xmlns:sp CDATA #REQUIRED>
+        <!ELEMENT sp:TransportToken (wsp:Policy)*>
+        <!ELEMENT sp:HttpsToken (#PCDATA)>
+        <!ATTLIST sp:HttpsToken
+                RequireClientCertificate CDATA #REQUIRED>
+        <!ELEMENT sp:AlgorithmSuite (wsp:Policy)*>
+        <!ELEMENT sp:Basic256 (#PCDATA)>
+        <!ELEMENT sp:Layout (wsp:Policy)*>
+        <!ELEMENT sp:Lax (#PCDATA)>
+        <!ELEMENT sp:IncludeTimestamp (#PCDATA)>
+        <!ELEMENT sp:SignedSupportingTokens (wsp:Policy)*>
+        <!ATTLIST sp:SignedSupportingTokens
+                xmlns:sp CDATA #REQUIRED>
+        <!ELEMENT sp:UsernameToken (wsp:Policy)*>
+        <!ATTLIST sp:UsernameToken
+                sp:IncludeToken CDATA #REQUIRED>
+        <!ELEMENT sp:WssUsernameToken10 (#PCDATA)>
+        <!ELEMENT sp:Wss10 (wsp:Policy)*>
+        <!ATTLIST sp:Wss10
+                xmlns:sp CDATA #REQUIRED>
+        <!ELEMENT sp:Strict (#PCDATA)>
+        <!ELEMENT wsdl:types (xs:schema)*>
+        <!ELEMENT xs:schema (xs:import|xs:element|xs:simpleType|xs:attribute|xs:complexType)*>
+        <!ATTLIST xs:schema
+                attributeFormDefault CDATA #IMPLIED
+                elementFormDefault CDATA #REQUIRED
+                targetNamespace CDATA #REQUIRED
+                xmlns:tns CDATA #IMPLIED
+                xmlns:xs CDATA #REQUIRED>
+        <!ELEMENT xs:import (#PCDATA)>
+        <!ATTLIST xs:import
+                namespace CDATA #REQUIRED>
+        <!ELEMENT xs:element (xs:complexType)*>
+        <!ATTLIST xs:element
+                maxOccurs CDATA #IMPLIED
+                minOccurs CDATA #IMPLIED
+                name CDATA #REQUIRED
+                nillable CDATA #IMPLIED
+                type CDATA #IMPLIED
+                xmlns:q1 CDATA #IMPLIED
+                xmlns:q10 CDATA #IMPLIED
+                xmlns:q11 CDATA #IMPLIED
+                xmlns:q12 CDATA #IMPLIED
+                xmlns:q13 CDATA #IMPLIED
+                xmlns:q14 CDATA #IMPLIED
+                xmlns:q15 CDATA #IMPLIED
+                xmlns:q16 CDATA #IMPLIED
+                xmlns:q17 CDATA #IMPLIED
+                xmlns:q18 CDATA #IMPLIED
+                xmlns:q19 CDATA #IMPLIED
+                xmlns:q2 CDATA #IMPLIED
+                xmlns:q20 CDATA #IMPLIED
+                xmlns:q21 CDATA #IMPLIED
+                xmlns:q22 CDATA #IMPLIED
+                xmlns:q23 CDATA #IMPLIED
+                xmlns:q24 CDATA #IMPLIED
+                xmlns:q3 CDATA #IMPLIED
+                xmlns:q4 CDATA #IMPLIED
+                xmlns:q5 CDATA #IMPLIED
+                xmlns:q6 CDATA #IMPLIED
+                xmlns:q7 CDATA #IMPLIED
+                xmlns:q8 CDATA #IMPLIED
+                xmlns:q9 CDATA #IMPLIED>
+        <!ELEMENT xs:complexType (xs:sequence|xs:complexContent)*>
+        <!ATTLIST xs:complexType
+                name CDATA #IMPLIED>
+        <!ELEMENT xs:sequence (xs:element)*>
+        <!ELEMENT xs:simpleType (xs:restriction)*>
+        <!ATTLIST xs:simpleType
+                name CDATA #REQUIRED>
+        <!ELEMENT xs:restriction (xs:pattern|xs:minInclusive|xs:maxInclusive)*>
+        <!ATTLIST xs:restriction
+                base CDATA #REQUIRED>
+        <!ELEMENT xs:pattern (#PCDATA)>
+        <!ATTLIST xs:pattern
+                value CDATA #REQUIRED>
+        <!ELEMENT xs:minInclusive (#PCDATA)>
+        <!ATTLIST xs:minInclusive
+                value CDATA #REQUIRED>
+        <!ELEMENT xs:maxInclusive (#PCDATA)>
+        <!ATTLIST xs:maxInclusive
+                value CDATA #REQUIRED>
+        <!ELEMENT xs:attribute (#PCDATA)>
+        <!ATTLIST xs:attribute
+                name CDATA #REQUIRED
+                type CDATA #REQUIRED>
+        <!ELEMENT xs:complexContent (xs:extension)*>
+        <!ATTLIST xs:complexContent
+                mixed CDATA #REQUIRED>
+        <!ELEMENT xs:extension (xs:sequence)*>
+        <!ATTLIST xs:extension
+                base CDATA #REQUIRED>
+        <!ELEMENT wsdl:message (wsdl:part)*>
+        <!ATTLIST wsdl:message
+                name CDATA #REQUIRED>
+        <!ELEMENT wsdl:part (#PCDATA)>
+        <!ATTLIST wsdl:part
+                element CDATA #REQUIRED
+                name CDATA #REQUIRED>
+        <!ELEMENT wsdl:portType (wsdl:operation)*>
+        <!ATTLIST wsdl:portType
+                name CDATA #REQUIRED>
+        <!ELEMENT wsdl:operation (wsdl:input|wsdl:output|soap:operation)*>
+        <!ATTLIST wsdl:operation
+                name CDATA #REQUIRED>
+        <!ELEMENT wsdl:input (soap:body)*>
+        <!ATTLIST wsdl:input
+                message CDATA #IMPLIED
+                wsaw:Action CDATA #IMPLIED>
+        <!ELEMENT wsdl:output (soap:body)*>
+        <!ATTLIST wsdl:output
+                message CDATA #IMPLIED
+                wsaw:Action CDATA #IMPLIED>
+        <!ELEMENT wsdl:binding (wsp:PolicyReference|soap:binding|wsdl:operation)*>
+        <!ATTLIST wsdl:binding
+                name CDATA #REQUIRED
+                type CDATA #REQUIRED>
+        <!ELEMENT wsp:PolicyReference (#PCDATA)>
+        <!ATTLIST wsp:PolicyReference
+                URI CDATA #REQUIRED>
+        <!ELEMENT soap:binding (#PCDATA)>
+        <!ATTLIST soap:binding
+                transport CDATA #REQUIRED>
+        <!ELEMENT soap:operation (#PCDATA)>
+        <!ATTLIST soap:operation
+                soapAction CDATA #REQUIRED
+                style CDATA #REQUIRED>
+        <!ELEMENT soap:body (#PCDATA)>
+        <!ATTLIST soap:body
+                use CDATA #REQUIRED>
+        <!ELEMENT wsdl:service (wsdl:port)*>
+        <!ATTLIST wsdl:service
+                name CDATA #REQUIRED>
+        <!ELEMENT wsdl:port (soap:address)*>
+        <!ATTLIST wsdl:port
+                binding CDATA #REQUIRED
+                name CDATA #REQUIRED>
+        <!ELEMENT soap:address (#PCDATA)>
+        <!ATTLIST soap:address
+                location CDATA #REQUIRED>
+        ]>
+<wsdl:definitions name="EchargeServiceV7" targetNamespace="http://tempuri.org/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:tns="http://tempuri.org/"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+>
+    <wsp:Policy wsu:Id="EchargeServiceEndPointV7_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+                    <wsp:Policy>
+                        <sp:TransportToken>
+                            <wsp:Policy>
+                                <sp:HttpsToken RequireClientCertificate="false"/>
+                            </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                            <wsp:Policy>
+                                <sp:Basic256/>
+                            </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                            <wsp:Policy>
+                                <sp:Lax/>
+                            </wsp:Policy>
+                        </sp:Layout>
+                        <sp:IncludeTimestamp/>
+                    </wsp:Policy>
+                </sp:TransportBinding>
+                <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+                    <wsp:Policy>
+                        <sp:UsernameToken
+                                sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                            <wsp:Policy>
+                                <sp:WssUsernameToken10/>
+                            </wsp:Policy>
+                        </sp:UsernameToken>
+                    </wsp:Policy>
+                </sp:SignedSupportingTokens>
+                <sp:Wss10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+                    <wsp:Policy/>
+                </sp:Wss10>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="EchargeTransportServiceEndPointV7_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+                    <wsp:Policy>
+                        <sp:TransportToken>
+                            <wsp:Policy>
+                                <sp:HttpsToken RequireClientCertificate="false"/>
+                            </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                            <wsp:Policy>
+                                <sp:Basic256/>
+                            </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                            <wsp:Policy>
+                                <sp:Strict/>
+                            </wsp:Policy>
+                        </sp:Layout>
+                    </wsp:Policy>
+                </sp:TransportBinding>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsdl:types>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import
+                    namespace="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+            <xs:element name="RegisterTopup">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="q1:TopupRequestV7"
+                                    xmlns:q1="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="RegisterTopupResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="RegisterTopupResult" nillable="true" type="q2:TopupResponseV7"
+                                    xmlns:q2="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TwoPhaseTopupRegister">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="q3:TopupRegisterRequestV7"
+                                    xmlns:q3="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TwoPhaseTopupRegisterResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="TwoPhaseTopupRegisterResult" nillable="true"
+                                    type="q4:TopupResponseV7"
+                                    xmlns:q4="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TwoPhaseTopupProcess">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="q5:TopupProcessRequestV7"
+                                    xmlns:q5="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TwoPhaseTopupProcessResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="TwoPhaseTopupProcessResult" nillable="true"
+                                    type="q6:TopupResponseV7"
+                                    xmlns:q6="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TwoPhaseTopupProcessWithEndUserInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true"
+                                    type="q7:TopupProcessWithEndUserInfoRequestV7"
+                                    xmlns:q7="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TwoPhaseTopupProcessWithEndUserInfoResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="TwoPhaseTopupProcessWithEndUserInfoResult" nillable="true"
+                                    type="q8:TopupResponseV7"
+                                    xmlns:q8="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="RegisterVoucher">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="q9:VoucherRequestV7"
+                                    xmlns:q9="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="RegisterVoucherResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="RegisterVoucherResult" nillable="true"
+                                    type="q10:VoucherResponseV7"
+                                    xmlns:q10="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ReverseVoucher">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="q11:ReverseVoucherRequestV7"
+                                    xmlns:q11="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ReverseVoucherResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="ReverseVoucherResult" nillable="true"
+                                    type="q12:ReverseVoucherResponseV7"
+                                    xmlns:q12="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="RevealVouchers">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="q13:StatusRequestV7"
+                                    xmlns:q13="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="RevealVouchersResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="RevealVouchersResult" nillable="true"
+                                    type="q14:VoucherResponseV7"
+                                    xmlns:q14="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="IsProductAvailable">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="q15:ProductAvailableRequestV7"
+                                    xmlns:q15="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="IsProductAvailableResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="IsProductAvailableResult" nillable="true"
+                                    type="q16:ProductAvailableResponseV7"
+                                    xmlns:q16="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetStatus">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="q17:StatusRequestV7"
+                                    xmlns:q17="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetStatusResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetStatusResult" nillable="true" type="q18:StatusResponseV7"
+                                    xmlns:q18="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetStatusByOptionalMerchantData">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true"
+                                    type="q19:StatusByOptionalMerchantDataRequestV7"
+                                    xmlns:q19="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetStatusByOptionalMerchantDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetStatusByOptionalMerchantDataResult" nillable="true"
+                                    type="q20:StatusResponseV7"
+                                    xmlns:q20="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetBalance">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="q21:BalanceRequestV7"
+                                    xmlns:q21="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetBalanceResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetBalanceResult" nillable="true" type="q22:BalanceResponseV7"
+                                    xmlns:q22="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetInternetPackages">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="q23:InternetPackagesRequestV7"
+                                    xmlns:q23="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetInternetPackagesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="GetInternetPackagesResult" nillable="true"
+                                    type="q24:InternetPackagesResponseV7"
+                                    xmlns:q24="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                   targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+            <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+            <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+            <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+            <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+            <xs:element name="byte" nillable="true" type="xs:byte"/>
+            <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+            <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+            <xs:element name="double" nillable="true" type="xs:double"/>
+            <xs:element name="float" nillable="true" type="xs:float"/>
+            <xs:element name="int" nillable="true" type="xs:int"/>
+            <xs:element name="long" nillable="true" type="xs:long"/>
+            <xs:element name="QName" nillable="true" type="xs:QName"/>
+            <xs:element name="short" nillable="true" type="xs:short"/>
+            <xs:element name="string" nillable="true" type="xs:string"/>
+            <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+            <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+            <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+            <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+            <xs:element name="char" nillable="true" type="tns:char"/>
+            <xs:simpleType name="char">
+                <xs:restriction base="xs:int"/>
+            </xs:simpleType>
+            <xs:element name="duration" nillable="true" type="tns:duration"/>
+            <xs:simpleType name="duration">
+                <xs:restriction base="xs:duration">
+                    <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+                    <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+                    <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="guid" nillable="true" type="tns:guid"/>
+            <xs:simpleType name="guid">
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:attribute name="FactoryType" type="xs:QName"/>
+            <xs:attribute name="Id" type="xs:ID"/>
+            <xs:attribute name="Ref" type="xs:IDREF"/>
+        </xs:schema>
+        <xs:schema elementFormDefault="qualified"
+                   targetNamespace="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   xmlns:tns="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.DataContracts.Strict.Version7">
+            <xs:import namespace="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.Entity"/>
+            <xs:complexType name="TopupRequestV7">
+                <xs:sequence>
+                    <xs:element name="Amount" type="xs:int"/>
+                    <xs:element name="MerchantId" type="xs:int"/>
+                    <xs:element name="MobileNumber" nillable="true" type="xs:string"/>
+                    <xs:element name="NationalCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="OptionalMerchantData" nillable="true" type="xs:string"/>
+                    <xs:element name="ProductId" type="xs:int"/>
+                    <xs:element name="ReferenceId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TopupRequestV7" nillable="true" type="tns:TopupRequestV7"/>
+            <xs:complexType name="TopupResponseV7">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="OperatorTransactionId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="StatusCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="TransactionId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TopupResponseV7" nillable="true" type="tns:TopupResponseV7"/>
+            <xs:complexType name="TopupRegisterRequestV7">
+                <xs:sequence>
+                    <xs:element name="Amount" type="xs:int"/>
+                    <xs:element name="MerchantId" type="xs:int"/>
+                    <xs:element name="MobileNumber" nillable="true" type="xs:string"/>
+                    <xs:element name="NationalCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="OptionalMerchantData" nillable="true" type="xs:string"/>
+                    <xs:element name="ProductId" type="xs:int"/>
+                    <xs:element name="ReferenceId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TopupRegisterRequestV7" nillable="true" type="tns:TopupRegisterRequestV7"/>
+            <xs:complexType name="TopupProcessRequestV7">
+                <xs:sequence>
+                    <xs:element name="MerchantId" type="xs:int"/>
+                    <xs:element name="TransactionId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TopupProcessRequestV7" nillable="true" type="tns:TopupProcessRequestV7"/>
+            <xs:complexType name="TopupProcessWithEndUserInfoRequestV7">
+                <xs:sequence>
+                    <xs:element name="EndUser" nillable="true" type="q1:EndUser"
+                                xmlns:q1="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.Entity"/>
+                    <xs:element name="MerchantId" type="xs:int"/>
+                    <xs:element name="TransactionId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TopupProcessWithEndUserInfoRequestV7" nillable="true"
+                        type="tns:TopupProcessWithEndUserInfoRequestV7"/>
+            <xs:complexType name="VoucherRequestV7">
+                <xs:sequence>
+                    <xs:element name="Count" type="xs:int"/>
+                    <xs:element name="MerchantId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="MobileNumber" nillable="true" type="xs:string"/>
+                    <xs:element name="NationalCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="OptionalMerchantData" nillable="true" type="xs:string"/>
+                    <xs:element name="ProductId" type="xs:int"/>
+                    <xs:element name="ReferenceId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="VoucherRequestV7" nillable="true" type="tns:VoucherRequestV7"/>
+            <xs:complexType name="VoucherResponseV7">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="StatusCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="TransactionId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="Vouchers" nillable="true" type="q2:ArrayOfVoucher"
+                                xmlns:q2="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.Entity"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="VoucherResponseV7" nillable="true" type="tns:VoucherResponseV7"/>
+            <xs:complexType name="ReverseVoucherRequestV7">
+                <xs:sequence>
+                    <xs:element name="MerchantId" type="xs:int"/>
+                    <xs:element name="ReferenceId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ReverseVoucherRequestV7" nillable="true" type="tns:ReverseVoucherRequestV7"/>
+            <xs:complexType name="ReverseVoucherResponseV7">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResultCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ReverseVoucherResponseV7" nillable="true" type="tns:ReverseVoucherResponseV7"/>
+            <xs:complexType name="StatusRequestV7">
+                <xs:sequence>
+                    <xs:element name="MerchantId" type="xs:int"/>
+                    <xs:element name="ReferenceId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="StatusRequestV7" nillable="true" type="tns:StatusRequestV7"/>
+            <xs:complexType name="ProductAvailableRequestV7">
+                <xs:sequence>
+                    <xs:element name="MerchantId" type="xs:int"/>
+                    <xs:element name="ProductId" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ProductAvailableRequestV7" nillable="true" type="tns:ProductAvailableRequestV7"/>
+            <xs:complexType name="ProductAvailableResponseV7">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="IsAvailable" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="ResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="StatusCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ProductAvailableResponseV7" nillable="true" type="tns:ProductAvailableResponseV7"/>
+            <xs:complexType name="StatusResponseV7">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="OperationTransactionId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="StatusCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="TransactionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="TransactionStatusCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="StatusResponseV7" nillable="true" type="tns:StatusResponseV7"/>
+            <xs:complexType name="StatusByOptionalMerchantDataRequestV7">
+                <xs:sequence>
+                    <xs:element name="MerchantId" type="xs:int"/>
+                    <xs:element name="OptionalMerchantData" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="StatusByOptionalMerchantDataRequestV7" nillable="true"
+                        type="tns:StatusByOptionalMerchantDataRequestV7"/>
+            <xs:complexType name="BalanceRequestV7">
+                <xs:sequence>
+                    <xs:element name="MerchantId" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="BalanceRequestV7" nillable="true" type="tns:BalanceRequestV7"/>
+            <xs:complexType name="BalanceResponseV7">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Balance" type="xs:long"/>
+                    <xs:element minOccurs="0" name="ResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="StatusCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="BalanceResponseV7" nillable="true" type="tns:BalanceResponseV7"/>
+            <xs:complexType name="InternetPackagesRequestV7">
+                <xs:sequence>
+                    <xs:element name="MerchantId" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="InternetPackagesRequestV7" nillable="true" type="tns:InternetPackagesRequestV7"/>
+            <xs:complexType name="InternetPackagesResponseV7">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Boltons" nillable="true" type="tns:ArrayOfBoltonV7"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="InternetPackagesResponseV7" nillable="true" type="tns:InternetPackagesResponseV7"/>
+            <xs:complexType name="ArrayOfBoltonV7">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="BoltonV7" nillable="true"
+                                type="tns:BoltonV7"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ArrayOfBoltonV7" nillable="true" type="tns:ArrayOfBoltonV7"/>
+            <xs:complexType name="BoltonV7">
+                <xs:complexContent mixed="false">
+                    <xs:extension base="tns:BaseProductV7">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="OperatorId" type="xs:int"/>
+                            <xs:element minOccurs="0" name="SymTypeId" nillable="true" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="BoltonV7" nillable="true" type="tns:BoltonV7"/>
+            <xs:complexType name="BaseProductV7">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="DurationInHours" type="xs:int"/>
+                    <xs:element minOccurs="0" name="Id" type="xs:int"/>
+                    <xs:element minOccurs="0" name="IsActive" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="IsObsolete" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Price" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="BaseProductV7" nillable="true" type="tns:BaseProductV7"/>
+        </xs:schema>
+        <xs:schema elementFormDefault="qualified"
+                   targetNamespace="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.Entity"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   xmlns:tns="http://schemas.datacontract.org/2004/07/Rayanmehr.eCharge.WebService.Entity">
+            <xs:complexType name="EndUser">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="MaskedPan" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="NationalCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Rrn" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="EndUser" nillable="true" type="tns:EndUser"/>
+            <xs:complexType name="ArrayOfVoucher">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Voucher" nillable="true" type="tns:Voucher"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ArrayOfVoucher" nillable="true" type="tns:ArrayOfVoucher"/>
+            <xs:complexType name="Voucher">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Pin" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Serial" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Voucher" nillable="true" type="tns:Voucher"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="IEchargeServiceV7_RegisterTopup_InputMessage">
+        <wsdl:part name="parameters" element="tns:RegisterTopup"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_RegisterTopup_OutputMessage">
+        <wsdl:part name="parameters" element="tns:RegisterTopupResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_TwoPhaseTopupRegister_InputMessage">
+        <wsdl:part name="parameters" element="tns:TwoPhaseTopupRegister"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_TwoPhaseTopupRegister_OutputMessage">
+        <wsdl:part name="parameters" element="tns:TwoPhaseTopupRegisterResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_TwoPhaseTopupProcess_InputMessage">
+        <wsdl:part name="parameters" element="tns:TwoPhaseTopupProcess"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_TwoPhaseTopupProcess_OutputMessage">
+        <wsdl:part name="parameters" element="tns:TwoPhaseTopupProcessResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_TwoPhaseTopupProcessWithEndUserInfo_InputMessage">
+        <wsdl:part name="parameters" element="tns:TwoPhaseTopupProcessWithEndUserInfo"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_TwoPhaseTopupProcessWithEndUserInfo_OutputMessage">
+        <wsdl:part name="parameters" element="tns:TwoPhaseTopupProcessWithEndUserInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_RegisterVoucher_InputMessage">
+        <wsdl:part name="parameters" element="tns:RegisterVoucher"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_RegisterVoucher_OutputMessage">
+        <wsdl:part name="parameters" element="tns:RegisterVoucherResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_ReverseVoucher_InputMessage">
+        <wsdl:part name="parameters" element="tns:ReverseVoucher"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_ReverseVoucher_OutputMessage">
+        <wsdl:part name="parameters" element="tns:ReverseVoucherResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_RevealVouchers_InputMessage">
+        <wsdl:part name="parameters" element="tns:RevealVouchers"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_RevealVouchers_OutputMessage">
+        <wsdl:part name="parameters" element="tns:RevealVouchersResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_IsProductAvailable_InputMessage">
+        <wsdl:part name="parameters" element="tns:IsProductAvailable"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_IsProductAvailable_OutputMessage">
+        <wsdl:part name="parameters" element="tns:IsProductAvailableResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_GetStatus_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetStatus"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_GetStatus_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetStatusResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_GetStatusByOptionalMerchantData_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetStatusByOptionalMerchantData"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_GetStatusByOptionalMerchantData_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetStatusByOptionalMerchantDataResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_GetBalance_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetBalance"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_GetBalance_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetBalanceResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_GetInternetPackages_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetInternetPackages"/>
+    </wsdl:message>
+    <wsdl:message name="IEchargeServiceV7_GetInternetPackages_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetInternetPackagesResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="IEchargeServiceV7">
+        <wsdl:operation name="RegisterTopup">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/RegisterTopup"
+                        message="tns:IEchargeServiceV7_RegisterTopup_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/RegisterTopupResponse"
+                         message="tns:IEchargeServiceV7_RegisterTopup_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="TwoPhaseTopupRegister">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupRegister"
+                        message="tns:IEchargeServiceV7_TwoPhaseTopupRegister_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupRegisterResponse"
+                         message="tns:IEchargeServiceV7_TwoPhaseTopupRegister_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="TwoPhaseTopupProcess">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupProcess"
+                        message="tns:IEchargeServiceV7_TwoPhaseTopupProcess_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupProcessResponse"
+                         message="tns:IEchargeServiceV7_TwoPhaseTopupProcess_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="TwoPhaseTopupProcessWithEndUserInfo">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupProcessWithEndUserInfo"
+                        message="tns:IEchargeServiceV7_TwoPhaseTopupProcessWithEndUserInfo_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupProcessWithEndUserInfoResponse"
+                         message="tns:IEchargeServiceV7_TwoPhaseTopupProcessWithEndUserInfo_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="RegisterVoucher">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/RegisterVoucher"
+                        message="tns:IEchargeServiceV7_RegisterVoucher_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/RegisterVoucherResponse"
+                         message="tns:IEchargeServiceV7_RegisterVoucher_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="ReverseVoucher">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/ReverseVoucher"
+                        message="tns:IEchargeServiceV7_ReverseVoucher_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/ReverseVoucherResponse"
+                         message="tns:IEchargeServiceV7_ReverseVoucher_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="RevealVouchers">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/RevealVouchers"
+                        message="tns:IEchargeServiceV7_RevealVouchers_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/RevealVouchersResponse"
+                         message="tns:IEchargeServiceV7_RevealVouchers_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="IsProductAvailable">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/IsProductAvailable"
+                        message="tns:IEchargeServiceV7_IsProductAvailable_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/IsProductAvailableResponse"
+                         message="tns:IEchargeServiceV7_IsProductAvailable_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetStatus">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/GetStatus"
+                        message="tns:IEchargeServiceV7_GetStatus_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/GetStatusResponse"
+                         message="tns:IEchargeServiceV7_GetStatus_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetStatusByOptionalMerchantData">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/GetStatusByOptionalMerchantData"
+                        message="tns:IEchargeServiceV7_GetStatusByOptionalMerchantData_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/GetStatusByOptionalMerchantDataResponse"
+                         message="tns:IEchargeServiceV7_GetStatusByOptionalMerchantData_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBalance">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/GetBalance"
+                        message="tns:IEchargeServiceV7_GetBalance_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/GetBalanceResponse"
+                         message="tns:IEchargeServiceV7_GetBalance_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetInternetPackages">
+            <wsdl:input wsaw:Action="http://tempuri.org/IEchargeServiceV7/GetInternetPackages"
+                        message="tns:IEchargeServiceV7_GetInternetPackages_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IEchargeServiceV7/GetInternetPackagesResponse"
+                         message="tns:IEchargeServiceV7_GetInternetPackages_OutputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="EchargeServiceEndPointV7" type="tns:IEchargeServiceV7">
+        <wsp:PolicyReference URI="#EchargeServiceEndPointV7_policy"/>
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="RegisterTopup">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/RegisterTopup" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TwoPhaseTopupRegister">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupRegister" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TwoPhaseTopupProcess">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupProcess" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TwoPhaseTopupProcessWithEndUserInfo">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupProcessWithEndUserInfo"
+                            style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="RegisterVoucher">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/RegisterVoucher" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ReverseVoucher">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/ReverseVoucher" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="RevealVouchers">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/RevealVouchers" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="IsProductAvailable">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/IsProductAvailable" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStatus">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/GetStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStatusByOptionalMerchantData">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/GetStatusByOptionalMerchantData"
+                            style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBalance">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/GetBalance" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetInternetPackages">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/GetInternetPackages" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="EchargeTransportServiceEndPointV7" type="tns:IEchargeServiceV7">
+        <wsp:PolicyReference URI="#EchargeTransportServiceEndPointV7_policy"/>
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="RegisterTopup">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/RegisterTopup" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TwoPhaseTopupRegister">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupRegister" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TwoPhaseTopupProcess">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupProcess" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TwoPhaseTopupProcessWithEndUserInfo">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/TwoPhaseTopupProcessWithEndUserInfo"
+                            style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="RegisterVoucher">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/RegisterVoucher" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ReverseVoucher">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/ReverseVoucher" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="RevealVouchers">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/RevealVouchers" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="IsProductAvailable">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/IsProductAvailable" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStatus">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/GetStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStatusByOptionalMerchantData">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/GetStatusByOptionalMerchantData"
+                            style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBalance">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/GetBalance" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetInternetPackages">
+            <soap:operation soapAction="http://tempuri.org/IEchargeServiceV7/GetInternetPackages" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="EchargeServiceV7">
+        <wsdl:port name="EchargeServiceEndPointV7" binding="tns:EchargeServiceEndPointV7">
+            <soap:address location="https://api.echargeservices.com/Services/Strict/Version7/EchargeServiceV7.svc"/>
+        </wsdl:port>
+        <wsdl:port name="EchargeTransportServiceEndPointV7" binding="tns:EchargeTransportServiceEndPointV7">
+            <soap:address
+                    location="https://api.echargeservices.com/Services/Strict/Version7/EchargeServiceV7.svc/transport"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,28 @@
+package com.rahand.sina.integration.domain.digitalpromissorynote.service.spec;
+
+import com.rahand.sina.integration.domain.digitalpromissorynote.dto.*;
+
+public interface DigitalPromissoryNote {
+
+    CreateDigitalPromissoryNoteRecipientResponse createDigitalRecipient(CreateDigitalPromissoryNoteRecipientRequest createDigitalPromissoryNoteRecipientRequest);
+
+    ReceiveDigitalPromissoryNoteResponse receive(ReceiveDigitalPromissoryNoteRequest receiveDigitalPromissoryNoteRequest);
+
+    GetPaymentUrlDigitalPromissoryNoteResponse getPaymentUrl(GetPaymentUrlDigitalPromissoryNoteRequest getPaymentUrlDigitalPromissoryNoteRequest);
+
+    PaymentStatusDigitalPromissoryNoteResponse getPaymentStatus(PaymentStatusDigitalPromissoryNoteRequest paymentStatusDigitalPromissoryNoteRequest);
+
+    SignDigitalPromissoryNoteResponse sign(SignDigitalPromissoryNoteRequest signDigitalPromissoryNoteRequest);
+
+    FinalRegistrationDigitalPromissoryNoteResponse finalRegistration(FinalRegistrationDigitalPromissoryNoteRequest finalRegistrationDigitalPromissoryNoteRequest);
+
+    InquiryDigitalPromissoryNotesResponse inquiryDigitalPromissoryNotes(InquiryDigitalPromissoryNotesRequest inquiryDigitalPromissoryNotesRequest);
+
+    RemoveDigitalPromissoryNoteResponse remove(RemoveDigitalPromissoryNoteRequest removeDigitalPromissoryNoteRequest);
+
+    GetAllDigitalPromissoryNoteRecipientResponse getAllRecipient(GetAllDigitalPromissoryNoteRecipientRequest getAllDigitalPromissoryNoteRecipientRequest);
+
+    RemoveDigitalPromissoryNoteRecipientResponse removeRecipient(RemoveDigitalPromissoryNoteRecipientRequest removeDigitalPromissoryNoteRecipientRequest);
+
+
+}

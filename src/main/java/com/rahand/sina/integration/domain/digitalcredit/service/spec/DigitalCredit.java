@@ -1,0 +1,25 @@
+package com.rahand.sina.integration.domain.digitalcredit.service.spec;
+
+import com.rahand.sina.integration.domain.digitalcredit.dto.*;
+
+public interface DigitalCredit {
+
+    CreateDigitalCreditDossierResponse createDossier(CreateDigitalCreditDossierRequest createDigitalCreditDossierRequest);
+
+    GetDigitalCreditDossiersResponse getDigitalCreditDossiers(GetDigitalCreditDossiersRequest getDigitalCreditDossiersRequest);
+
+    GetDigitalCreditBillResponse getDigitalCreditDossierBill(GetDigitalCreditBillRequest getDigitalCreditBillRequest);
+
+    DigitalCreditPaymentResponse payment(DigitalCreditPaymentRequest digitalCreditPaymentRequest);
+
+    DigitalCreditConfirmPaymentResponse confirmPayment(DigitalCreditConfirmPaymentRequest digitalCreditConfirmPaymentRequest);
+
+    DigitalCreditRollbackPaymentResponse rollbackPayment(DigitalCreditRollbackPaymentRequest digitalCreditRollbackPaymentRequest);
+
+    DigitalCreditInquiryTransactionResponse inquiryTransaction(DigitalCreditInquiryTransactionRequest digitalCreditInquiryTransactionRequest);
+
+    GetDigitalCreditBillDetailedTransactionResponse getBillDetailedTransactions(GetDigitalCreditBillDetailedTransactionRequest getDigitalCreditBillDetailedTransactionRequest);
+
+    DigitalCreditPayBillResponse payBill(DigitalCreditPayBillRequest digitalCreditPayBillRequest);
+
+}
